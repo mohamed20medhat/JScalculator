@@ -17,6 +17,7 @@ class Calculator{
 
   appendNumber(number){
     if(number === '.' && this.current.includes('.')) return
+    // if(this.previous !== '' && this.operation === undefined) return
     this.current = this.current.toString() + number
   }
 
@@ -51,19 +52,21 @@ class Calculator{
         return
     }
 
-    this.current = result
     this.previous = ''
     this.operation = undefined
+    this.current = result
   }
 
 
   updateDisplay(){
+    this.currentOperandTextElement.innerText = this.current
+    
     if(this.operation){
       this.previousOperandTextElement.innerText = `${this.previous} ${this.operation}`
     } else {
       this.previousOperandTextElement.innerText = this.previous
     }
-    this.currentOperandTextElement.innerText = this.current
+    
   }
 
 
